@@ -97,24 +97,48 @@ function selectAnswer(answerNumber) {
     QuizState.userAnswers[qId] = [];
   }
 
-  // Allow duplicates? NO
-  if (
-    !QuizState.userAnswers[qId].includes(answerNumber) &&
-    QuizState.userAnswers[qId].length < 4
-  ) {
-    // PUSH only (left → right)
-    QuizState.userAnswers[qId].push(answerNumber);
+  const answers = QuizState.userAnswers[qId];
+  const btn = document.querySelector(`button[data-answer="${answerNumber}"]`);
+
+  // TOGGLE OFF
+  if (answers.includes(answerNumber)) {
+    QuizState.userAnswers[qId] = answers.filter((a) => a !== answerNumber);
+  }
+  // TOGGLE ON
+  else if (answers.length < 4) {
+    answers.push(answerNumber);
   }
 
   evaluateCurrentQuestion();
   updateAnswerSlotsUI();
+  updateAnswerButtonsUI(); // 🔑 force sync
+}
+
+function updateAnswerButtonsUI() {
+  const qId = getCurrentQuestion().id;
+  const answers = QuizState.userAnswers[qId] || [];
+
+  document.querySelectorAll("button[data-answer]").forEach((btn) => {
+    const num = Number(btn.dataset.answer);
+
+    if (answers.includes(num)) {
+      btn.classList.remove("btn-outline-primary");
+      btn.classList.add("btn-danger");
+    } else {
+      btn.classList.remove("btn-danger");
+      btn.classList.add("btn-outline-primary");
+    }
+  });
 }
 
 function clearAnswers() {
   const qId = getCurrentQuestion().id;
+
   QuizState.userAnswers[qId] = [];
   QuizState.results[qId] = false;
+
   updateAnswerSlotsUI();
+  updateAnswerButtonsUI(); // 🔑 THIS FIXES IT
 }
 
 /*************************

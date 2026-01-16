@@ -109,10 +109,10 @@
                 <!-- ANSWER SLOTS -->
                 <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between" dir="ltr" id="answer-slots">
-                        <div class="answer-slot" data-value="1"></div>
-                        <div class="answer-slot" data-value="2"></div>
-                        <div class="answer-slot" data-value="3"></div>
-                        <div class="answer-slot" data-value="4"></div>
+                        <div class="answer-slot bg-primary" data-value="1"></div>
+                        <div class="answer-slot bg-primary" data-value="2"></div>
+                        <div class="answer-slot bg-primary" data-value="3"></div>
+                        <div class="answer-slot bg-primary" data-value="4"></div>
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@
 
 
                 <!-- CONTROLS -->
-                <div class="card flex-grow-1">
+                <div class="card flex-grow-1 bg-primary">
                     <div class="card-body d-flex flex-column justify-content-between text-center">
 
                         <!-- CLEAR -->
@@ -130,10 +130,10 @@
 
                         <!-- ANSWERS 1-4 -->
                         <div class="d-grid gap-3 mb-3">
-                            <button class="btn btn-outline-primary btn-lg" onclick="selectAnswer(1)">1</button>
-                            <button class="btn btn-outline-primary btn-lg" onclick="selectAnswer(2)">2</button>
-                            <button class="btn btn-outline-primary btn-lg" onclick="selectAnswer(3)">3</button>
-                            <button class="btn btn-outline-primary btn-lg" onclick="selectAnswer(4)">4</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="1" onclick="selectAnswer(1)">1</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="2" onclick="selectAnswer(2)">2</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="3" onclick="selectAnswer(3)">3</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="4" onclick="selectAnswer(4)">4</button>
                         </div>
 
                         <!-- VALIDATE -->
@@ -220,6 +220,7 @@
 
             // Restore answers
             updateAnswerSlotsUI();
+            updateAnswerButtonsUI();
         }
 
         function updateTimerUI(seconds) {
