@@ -28,7 +28,7 @@ function renderScore() {
   const total = resultsData.length;
   const correct = resultsData.filter((r) => r.isCorrect).length;
   const scoreEl = document.getElementById("score");
-  if (scoreEl) scoreEl.textContent = `النتيجة: ${correct} / ${total}`;
+  if (scoreEl) scoreEl.textContent = `النتيجة: ${total} / ${correct}`;
 }
 
 /*************************

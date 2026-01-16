@@ -192,7 +192,7 @@
                 </div>
 
                 <!-- QUESTION NUMBER -->
-                <div class="col-md-4 fw-bold">
+                <div class="col-md-4 fw-bold bg-danger rounded">
                     سؤال <span id="question-number"></span>
                 </div>
 
@@ -233,7 +233,7 @@
 
             // Question number
             document.getElementById("question-number").textContent =
-                `${QuizState.currentIndex + 1} / ${QuizState.questions.length}`;
+                `${QuizState.questions.length} / ${QuizState.currentIndex + 1} `;
 
             // Restore answers
             updateAnswerSlotsUI();
