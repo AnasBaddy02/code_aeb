@@ -7,31 +7,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        .invisible-slot {
-            visibility: hidden;
+        /* ------------------------------
+       BODY
+    ------------------------------ */
+        body {
+            overflow: hidden;
+            /* desktop no scroll */
         }
 
-        /* Height = viewport minus footer */
+        @media (max-width: 767px) {
+            body {
+                overflow-y: auto;
+                /* allow scrolling on mobile */
+            }
+        }
+
+        /* ------------------------------
+       QUESTION IMAGE
+    ------------------------------ */
         #question-image {
             width: 100%;
             height: calc(100vh - 80px);
-            /* footer height */
+            /* fill from top to footer */
             object-fit: fill;
             /* stretch to fit */
         }
 
-        /* Ensure image column fills height */
+        @media (max-width: 767px) {
+            #question-image {
+                height: auto;
+                /* maintain aspect ratio on mobile */
+                object-fit: contain;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #question-image {
+                max-height: 85vh;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            #question-image {
+                max-height: 90vh;
+            }
+        }
+
+        /* ------------------------------
+       IMAGE COLUMN
+    ------------------------------ */
         .image-column {
             height: calc(100vh - 80px);
             display: flex;
             align-items: stretch;
         }
 
-        /* Prevent page scrolling */
-        body {
-            overflow: hidden;
-        }
-
+        /* ------------------------------
+       ANSWER SLOTS
+    ------------------------------ */
         .answer-slot {
             width: 48px;
             height: 48px;
@@ -41,11 +74,9 @@
             color: white;
             font-size: 1.25rem;
             font-weight: bold;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             opacity: 0.2;
             /* looks empty */
             transition: opacity 0.2s ease;
@@ -55,43 +86,31 @@
             opacity: 1;
         }
 
-
-        /* Base scaling for large screens */
+        /* ------------------------------
+       SLOT TEXT (Large screens)
+    ------------------------------ */
         @media (min-width: 1200px) {
-            body {
-                font-size: 1.15rem;
-            }
-
-            #question-image {
-                max-height: 85vh;
-            }
-
             .slot {
                 font-size: 1.8rem;
                 padding: 1rem 1.5rem;
             }
-
-            .btn-lg {
-                font-size: 1.25rem;
-                padding: 0.9rem 1.2rem;
-            }
         }
 
-        /* Extra large screens */
         @media (min-width: 1600px) {
-            body {
-                font-size: 1.3rem;
-            }
-
-            #question-image {
-                max-height: 90vh;
-            }
-
             .slot {
                 font-size: 2.1rem;
             }
         }
+
+        /* ------------------------------
+       BUTTONS
+    ------------------------------ */
+        .btn-lg {
+            font-size: 1.25rem;
+            padding: 0.9rem 1.2rem;
+        }
     </style>
+
 
     <!-- Bootstrap RTL -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -104,7 +123,7 @@
         <div class="row h-100">
 
             <!-- RIGHT PANEL -->
-            <div class="col-md-3 d-flex flex-column align-items-stretch">
+            <div class="col-md-3 d-flex flex-column align-items-stretch order-2 order-md-1">
 
                 <!-- ANSWER SLOTS -->
                 <div class="card mb-3">
@@ -130,10 +149,14 @@
 
                         <!-- ANSWERS 1-4 -->
                         <div class="d-grid gap-3 mb-3">
-                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="1" onclick="selectAnswer(1)">1</button>
-                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="2" onclick="selectAnswer(2)">2</button>
-                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="3" onclick="selectAnswer(3)">3</button>
-                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="4" onclick="selectAnswer(4)">4</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="1"
+                                onclick="selectAnswer(1)">1</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="2"
+                                onclick="selectAnswer(2)">2</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="3"
+                                onclick="selectAnswer(3)">3</button>
+                            <button class="btn border border-3 border-light btn-lg text-dark" data-answer="4"
+                                onclick="selectAnswer(4)">4</button>
                         </div>
 
                         <!-- VALIDATE -->
@@ -147,7 +170,7 @@
             </div>
 
             <!-- IMAGE (LEFT - 80%) -->
-            <div class="col-md-9 image-column">
+            <div class="col-md-9 image-column order-1 order-md-2">
                 <img id="question-image" alt="Question image" />
             </div>
         </div>
