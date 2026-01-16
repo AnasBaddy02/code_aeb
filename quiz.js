@@ -112,14 +112,8 @@ function selectAnswer(answerNumber) {
 
 function clearAnswers() {
   const qId = getCurrentQuestion().id;
-
-  // Clear all saved answers for this question
   QuizState.userAnswers[qId] = [];
-
-  // Mark the result as incorrect (optional, depends on your logic)
   QuizState.results[qId] = false;
-
-  // Update the UI to empty all 4 slots
   updateAnswerSlotsUI();
 }
 
@@ -243,23 +237,20 @@ function updateTimerUI(seconds) {
 }
 
 function updateAnswerSlotsUI() {
-  const slots = document.querySelectorAll(".slot");
   const qId = getCurrentQuestion().id;
   const answers = QuizState.userAnswers[qId] || [];
 
-  // Reset all slots (hidden & empty)
-  slots.forEach((slot) => {
-    slot.textContent = "";
-    slot.classList.add("invisible-slot");
-    slot.classList.remove("bg-primary", "text-white");
-  });
+  const slots = document.querySelectorAll(".answer-slot");
 
-  // Fill slots from left to right
-  answers.forEach((answer, index) => {
-    if (slots[index]) {
-      slots[index].textContent = answer;
-      slots[index].classList.remove("invisible-slot");
-      slots[index].classList.add("bg-primary", "text-white");
+  slots.forEach((slot) => {
+    const value = Number(slot.dataset.value);
+
+    if (answers.includes(value)) {
+      slot.textContent = value;
+      slot.classList.add("filled");
+    } else {
+      slot.textContent = "";
+      slot.classList.remove("filled");
     }
   });
 }
