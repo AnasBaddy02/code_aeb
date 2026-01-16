@@ -243,19 +243,23 @@ function updateTimerUI(seconds) {
 }
 
 function updateAnswerSlotsUI() {
-  const slots = document.querySelectorAll("#answer-slots .slot");
+  const slots = document.querySelectorAll(".slot");
   const qId = getCurrentQuestion().id;
   const answers = QuizState.userAnswers[qId] || [];
 
-  slots.forEach((slot, index) => {
-    if (answers[index] !== undefined) {
-      slot.textContent = answers[index];
-      slot.classList.remove("bg-secondary");
-      slot.classList.add("bg-primary");
-    } else {
-      slot.textContent = "";
-      slot.classList.remove("bg-primary");
-      slot.classList.add("bg-secondary");
+  // Reset all slots (hidden & empty)
+  slots.forEach((slot) => {
+    slot.textContent = "";
+    slot.classList.add("invisible-slot");
+    slot.classList.remove("bg-primary", "text-white");
+  });
+
+  // Fill slots from left to right
+  answers.forEach((answer, index) => {
+    if (slots[index]) {
+      slots[index].textContent = answer;
+      slots[index].classList.remove("invisible-slot");
+      slots[index].classList.add("bg-primary", "text-white");
     }
   });
 }

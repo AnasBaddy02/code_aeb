@@ -6,6 +6,48 @@
     <title>الاختبار</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <style>
+        .invisible-slot {
+            visibility: hidden;
+        }
+
+        /* Base scaling for large screens */
+        @media (min-width: 1200px) {
+            body {
+                font-size: 1.15rem;
+            }
+
+            #question-image {
+                max-height: 85vh;
+            }
+
+            .slot {
+                font-size: 1.8rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .btn-lg {
+                font-size: 1.25rem;
+                padding: 0.9rem 1.2rem;
+            }
+        }
+
+        /* Extra large screens */
+        @media (min-width: 1600px) {
+            body {
+                font-size: 1.3rem;
+            }
+
+            #question-image {
+                max-height: 90vh;
+            }
+
+            .slot {
+                font-size: 2.1rem;
+            }
+        }
+    </style>
+
     <!-- Bootstrap RTL -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
 </head>
@@ -21,13 +63,14 @@
 
                 <!-- ANSWER SLOTS -->
                 <div class="card mb-3">
-                    <div class="card-body d-flex justify-content-between" id="answer-slots">
-                        <span class="badge bg-secondary fs-3 slot"></span>
-                        <span class="badge bg-secondary fs-3 slot"></span>
-                        <span class="badge bg-secondary fs-3 slot"></span>
-                        <span class="badge bg-secondary fs-3 slot"></span>
+                    <div class="card-body d-flex justify-content-between text-center" id="answer-slots">
+                        <div class="border rounded fs-4 fw-bold px-3 py-2 slot invisible-slot"></div>
+                        <div class="border rounded fs-4 fw-bold px-3 py-2 slot invisible-slot"></div>
+                        <div class="border rounded fs-4 fw-bold px-3 py-2 slot invisible-slot"></div>
+                        <div class="border rounded fs-4 fw-bold px-3 py-2 slot invisible-slot"></div>
                     </div>
                 </div>
+
 
 
                 <!-- CONTROLS -->
