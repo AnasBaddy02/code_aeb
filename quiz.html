@@ -196,11 +196,6 @@
                     سؤال <span id="question-number"></span>
                 </div>
 
-                <!-- TIMER -->
-                <div class="col-md-4 fw-bold text-danger">
-                    ⏱ <span id="timer">30</span> ثانية
-                </div>
-
             </div>
         </div>
     </footer>
@@ -222,7 +217,6 @@
             QuizState.userAnswers = {};
             QuizState.results = {};
 
-            startTimer();
             renderQuestion();
         });
 
@@ -244,10 +238,6 @@
             // Restore answers
             updateAnswerSlotsUI();
             updateAnswerButtonsUI();
-        }
-
-        function updateTimerUI(seconds) {
-            document.getElementById("timer").textContent = seconds;
         }
     </script>
 

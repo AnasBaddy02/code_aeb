@@ -8,8 +8,6 @@ const QuizState = {
   currentIndex: 0,
   userAnswers: {}, // { questionId: [1,2] }
   results: {}, // { questionId: true/false }
-  timer: null,
-  timeLeft: 30,
   quizType: null, // "practice" | "category"
 };
 
@@ -49,7 +47,6 @@ function resetQuiz() {
   QuizState.currentIndex = 0;
   QuizState.userAnswers = {};
   QuizState.results = {};
-  startTimer();
 }
 
 function startPracticeQuiz() {
@@ -64,26 +61,6 @@ function startCategoryQuiz(questionsSubset) {
   QuizState.questions = questionsSubset;
   resetQuiz();
   goToQuizPage();
-}
-
-/*************************
- * TIMER
- *************************/
-function startTimer() {
-  clearInterval(QuizState.timer);
-  QuizState.timeLeft = 30;
-
-  QuizState.timer = setInterval(() => {
-    QuizState.timeLeft--;
-
-    // UI hook
-    updateTimerUI(QuizState.timeLeft);
-
-    if (QuizState.timeLeft <= 0) {
-      clearInterval(QuizState.timer);
-      autoNextQuestion();
-    }
-  }, 1000);
 }
 
 /*************************
@@ -162,7 +139,6 @@ function nextQuestion() {
 
   if (QuizState.currentIndex < QuizState.questions.length - 1) {
     QuizState.currentIndex++;
-    startTimer();
     renderQuestion();
   } else {
     endQuiz();
@@ -177,7 +153,6 @@ function autoNextQuestion() {
 function prevQuestion() {
   if (QuizState.currentIndex > 0) {
     QuizState.currentIndex--;
-    startTimer();
     renderQuestion();
   }
 }
@@ -186,8 +161,6 @@ function prevQuestion() {
  * QUIZ END
  *************************/
 function endQuiz() {
-  clearInterval(QuizState.timer);
-
   // Save quiz results in sessionStorage
   sessionStorage.setItem("quizResults", JSON.stringify(getResultsSummary()));
 
@@ -196,8 +169,6 @@ function endQuiz() {
 }
 
 function exitQuiz() {
-  clearInterval(QuizState.timer);
-
   // Save current answers for partial results
   sessionStorage.setItem("quizResults", JSON.stringify(getResultsSummary()));
 
@@ -254,10 +225,6 @@ function renderQuestion() {
   // show image
   // update question number
   // load previous answers if exist
-}
-
-function updateTimerUI(seconds) {
-  // update timer text
 }
 
 function updateAnswerSlotsUI() {
