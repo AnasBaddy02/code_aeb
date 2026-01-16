@@ -11,6 +11,27 @@
             visibility: hidden;
         }
 
+        /* Height = viewport minus footer */
+        #question-image {
+            width: 100%;
+            height: calc(100vh - 80px);
+            /* footer height */
+            object-fit: fill;
+            /* stretch to fit */
+        }
+
+        /* Ensure image column fills height */
+        .image-column {
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* Prevent page scrolling */
+        body {
+            overflow: hidden;
+        }
+
         /* Base scaling for large screens */
         @media (min-width: 1200px) {
             body {
@@ -101,8 +122,8 @@
             </div>
 
             <!-- IMAGE (LEFT - 80%) -->
-            <div class="col-md-9 d-flex align-items-center justify-content-center">
-                <img id="question-image" class="img-fluid rounded" alt="صورة السؤال">
+            <div class="col-md-9 image-column">
+                <img id="question-image" alt="Question image" />
             </div>
         </div>
     </div>
