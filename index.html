@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <title>اختبار تعليم السياقة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap RTL -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+  <!-- Header -->
+  <nav class="navbar navbar-dark bg-primary mb-4">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">
+        اختبار تعليم السياقة – المغرب
+      </span>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Practice Quiz -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title mb-3">اختبار تدريبي</h4>
+        <button class="btn btn-success btn-lg" onclick="startPracticeQuiz()">
+          اختبار تدريبي (40 سؤال)
+        </button>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-3">الاختبارات حسب الفئة</h4>
+
+        <div id="categories-container" class="d-flex flex-wrap gap-3"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JS -->
+  <script src="quiz.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      await initApp();
+      buildCategoryButtons();
+    });
+
+    function buildCategoryButtons() {
+      const container = document.getElementById("categories-container");
+      container.innerHTML = "";
+
+      QuizState.allCategories.forEach(cat => {
+        const questions = QuizState.allQuestions.filter(q =>
+          q.categories.includes(cat.id)
+        );
+
+        const chunkSize = 40;
+        const chunks = [];
+
+        for (let i = 0; i < questions.length; i += chunkSize) {
+          chunks.push(questions.slice(i, i + chunkSize));
+        }
+
+        chunks.forEach((chunk, index) => {
+          const label =
+            chunks.length > 1
+              ? `${cat.name} (${index + 1})`
+              : cat.name;
+
+          const btn = document.createElement("button");
+          btn.className = "btn btn-primary btn-lg";
+          btn.textContent = label;
+
+          // 🔑 PASS QUESTIONS DIRECTLY
+          btn.onclick = () => startCategoryQuiz(chunk);
+
+          container.appendChild(btn);
+        });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{
+  "questions": [
+    {
+      "number": 1,
+      "category": "التشوير",
+      "image": "images/q1.png",
+      "answers": [1]
+    },
+    {
+      "number": 2,
+      "category": "الوقوف والتوقف",
+      "image": "images/q2.png",
+      "answers": [2]
+    }
+  ],
+  "categories": [
+    "التشوير",
+    "الوقوف والتوقف"
+  ]
+}
