@@ -49,7 +49,7 @@ function renderResultsButtons() {
     wrapper.style.justifyContent = "center";
     wrapper.style.border = "1px solid #ccc";
     wrapper.style.borderRadius = "6px";
-    wrapper.style.padding = "4px";
+    // wrapper.style.padding = "4px";
     wrapper.style.boxSizing = "border-box";
 
     // Question number button with background based on correctness
