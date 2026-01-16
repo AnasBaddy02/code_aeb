@@ -41,36 +41,58 @@ function renderResultsButtons() {
   container.innerHTML = ""; // clear previous buttons
 
   resultsData.forEach((r, idx) => {
-    // Wrapper for each button
+    // Wrapper div for each question block
     const wrapper = document.createElement("div");
     wrapper.style.display = "flex";
-    wrapper.style.justifyContent = "center";
+    wrapper.style.flexDirection = "column";
     wrapper.style.alignItems = "center";
-    wrapper.style.height = "50px"; // fixed height, prevents stretching
-    wrapper.style.width = "100%"; // full width of the grid cell
+    wrapper.style.justifyContent = "center";
+    wrapper.style.border = "1px solid #ccc";
+    wrapper.style.borderRadius = "6px";
+    wrapper.style.padding = "4px";
+    wrapper.style.boxSizing = "border-box";
 
-    // Question button
-    const btn = document.createElement("button");
-    btn.className = "btn btn-sm text-white";
-    btn.style.width = "40px";
-    btn.style.height = "40px";
-    btn.style.padding = "0";
-    btn.style.fontSize = "0.9rem";
-    btn.textContent = idx + 1;
-    btn.style.backgroundColor = r.isCorrect ? "#2ecc71" : "#e74c3c";
+    // Question number button with background based on correctness
+    const numberBtn = document.createElement("button");
+    numberBtn.textContent = idx + 1;
+    numberBtn.style.width = "40px";
+    numberBtn.style.height = "40px";
+    numberBtn.style.border = "none";
+    numberBtn.style.borderRadius = "4px";
+    numberBtn.style.fontSize = "1rem";
+    numberBtn.style.cursor = "pointer";
+    numberBtn.style.color = "#fff";
+    numberBtn.style.backgroundColor = r.isCorrect ? "#2ecc71" : "#e74c3c";
 
-    // Click to show image + answers
-    btn.addEventListener("click", () => {
+    numberBtn.addEventListener("click", () => {
       currentResultIndex = idx;
       showResult(idx);
       highlightCurrentButton(idx);
     });
 
-    wrapper.appendChild(btn);
+    // Correct answers under the number (plain, no background)
+    const answersDiv = document.createElement("div");
+    answersDiv.style.display = "flex";
+    answersDiv.style.gap = "4px";
+    answersDiv.style.marginTop = "2px";
+
+    r.correctAnswers.forEach((ans) => {
+      const span = document.createElement("span");
+      span.textContent = ans;
+      span.style.fontSize = "0.9rem";
+      span.style.fontWeight = "bold";
+      span.style.color = "#000"; // plain black
+      answersDiv.appendChild(span);
+    });
+
+    // Combine number + correct answers
+    wrapper.appendChild(numberBtn);
+    wrapper.appendChild(answersDiv);
+
     container.appendChild(wrapper);
   });
 
-  highlightCurrentButton(0); // highlight first button by default
+  highlightCurrentButton(currentResultIndex);
 }
 
 /*************************
