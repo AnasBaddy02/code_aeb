@@ -81,7 +81,7 @@ function renderResultsButtons() {
       span.textContent = ans;
       span.style.fontSize = "0.9rem";
       span.style.fontWeight = "bold";
-      span.style.color = "#000"; // plain black
+      // span.style.color = "#000"; // plain black
       answersDiv.appendChild(span);
     });
 
