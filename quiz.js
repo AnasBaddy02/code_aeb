@@ -100,9 +100,9 @@ function updateAnswerButtonsUI() {
 
     if (answers.includes(num)) {
       btn.classList.remove("btn-outline-primary");
-      btn.classList.add("btn-danger");
+      btn.classList.add("btn-info");
     } else {
-      btn.classList.remove("btn-danger");
+      btn.classList.remove("btn-info");
       btn.classList.add("btn-outline-primary");
     }
   });
