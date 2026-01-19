@@ -205,8 +205,12 @@
                     </div>
                 </div>
 
-                <!-- RIGHT: Spacer (future use: progress, timer, etc.) -->
-                <div class="col-md-4 d-none d-md-block"></div>
+                <!-- RIGHT: Category Name -->
+                <div class="col-md-4">
+                    <div class="d-inline-flex align-items-center gap-2 px-4 py-2 fw-bold">
+                        <span id="category-name" class="text-light"></span>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -225,15 +229,26 @@
                 return;
             }
 
+            // Restore quiz state from sessionStorage
             QuizState.questions = savedQuiz.questions;
             QuizState.currentIndex = 0;
             QuizState.userAnswers = {};
             QuizState.results = {};
+            QuizState.quizType = savedQuiz.quizType || "practice";
+            QuizState.categoryName = savedQuiz.categoryName || "تلقائي";
 
+            // Set category name in footer
+            const el = document.getElementById("category-name");
+            if (el) {
+                el.textContent =
+                    QuizState.quizType === "category"
+                        ? QuizState.categoryName
+                        : "تلقائي";
+            }
+
+            // Render first question
             renderQuestion();
         });
-
-
 
         /*************************
          * UI HOOK IMPLEMENTATION
@@ -244,9 +259,9 @@
             // Image
             document.getElementById("question-image").src = q.image;
 
-            // Question number
+            // Question number (current / total)
             document.getElementById("question-number").textContent =
-                `${QuizState.questions.length} / ${QuizState.currentIndex + 1} `;
+                `${QuizState.currentIndex + 1} / ${QuizState.questions.length}`;
 
             // Restore answers
             updateAnswerSlotsUI();

@@ -68,8 +68,8 @@
   {
     "id": 112,
     "image": "images/AWA12.png",
-    "categories": [1, 2],
-    "correctAnswers": [2]
+    "categories": [1],
+    "correctAnswers": [2, 3]
   },
   {
     "id": 113,

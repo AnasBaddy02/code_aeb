@@ -49,15 +49,22 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
+      // Load all questions and categories
       await initApp();
       buildCategoryButtons();
     });
 
+    /**
+     * Builds the category buttons on the index page.
+     * Splits categories with more than 40 questions into multiple chunks.
+     * Passes the correct category name to the quiz so the footer shows it.
+     */
     function buildCategoryButtons() {
       const container = document.getElementById("categories-container");
       container.innerHTML = "";
 
       QuizState.allCategories.forEach(cat => {
+        // Filter questions for this category
         const questions = QuizState.allQuestions.filter(q =>
           q.categories.includes(cat.id)
         );
@@ -65,28 +72,30 @@
         const chunkSize = 40;
         const chunks = [];
 
+        // Split questions into chunks of 40 max
         for (let i = 0; i < questions.length; i += chunkSize) {
           chunks.push(questions.slice(i, i + chunkSize));
         }
 
+        // Create a button for each chunk
         chunks.forEach((chunk, index) => {
-          const label =
-            chunks.length > 1
-              ? `${cat.name} (${index + 1})`
-              : cat.name;
+          // Label shown on button (with (1), (2) if split)
+          const label = chunks.length > 1 ? `${cat.name} (${index + 1})` : cat.name;
 
           const btn = document.createElement("button");
           btn.className = "btn btn-primary btn-lg";
           btn.textContent = label;
 
-          // 🔑 PASS QUESTIONS DIRECTLY
-          btn.onclick = () => startCategoryQuiz(chunk);
+          // Pass questions array and the original category name (without suffix) to the quiz
+          const footerName = cat.name;
+          btn.onclick = () => startCategoryQuiz(chunk, footerName);
 
           container.appendChild(btn);
         });
       });
     }
   </script>
+
 
 </body>
 
