@@ -26,7 +26,7 @@
   {
     "id": 105,
     "image": "images/AWA5.png",
-    "categories": [1],
+    "categories": [1, 2],
     "correctAnswers": [2, 3]
   },
   {
@@ -68,7 +68,7 @@
   {
     "id": 112,
     "image": "images/AWA12.png",
-    "categories": [1],
+    "categories": [1, 2],
     "correctAnswers": [2, 3]
   },
   {
@@ -273,7 +273,7 @@
   {
     "id": 146,
     "image": "images/TT16.png",
-    "categories": [2],
+    "categories": [2, 3],
     "correctAnswers": [1, 3]
   },
   {
@@ -358,7 +358,7 @@
   {
     "id": 160,
     "image": "images/TT30.png",
-    "categories": [2],
+    "categories": [2, 3],
     "correctAnswers": [2]
   },
 
@@ -389,7 +389,7 @@
   {
     "id": 165,
     "image": "images/TT35.png",
-    "categories": [2],
+    "categories": [2, 3],
     "correctAnswers": [2]
   },
   {
@@ -499,7 +499,7 @@
   {
     "id": 183,
     "image": "images/TT53.png",
-    "categories": [2],
+    "categories": [2, 3],
     "correctAnswers": [2]
   },
   {
@@ -590,7 +590,7 @@
   {
     "id": 198,
     "image": "images/TT68.png",
-    "categories": [2],
+    "categories": [2, 3],
     "correctAnswers": [1]
   },
   {
@@ -666,13 +666,6 @@
     "categories": [2],
     "correctAnswers": [2]
   },
-
-  {
-    "id": 211,
-    "image": "images/TT81.png",
-    "categories": [2],
-    "correctAnswers": [2, 3]
-  },
   {
     "id": 212,
     "image": "images/TT82.png",
@@ -720,12 +713,6 @@
     "image": "images/TT89.png",
     "categories": [2],
     "correctAnswers": [1]
-  },
-  {
-    "id": 220,
-    "image": "images/TT90.png",
-    "categories": [2],
-    "correctAnswers": [2, 3]
   },
 
   {
@@ -777,18 +764,6 @@
     "correctAnswers": [1]
   },
   {
-    "id": 229,
-    "image": "images/TWT7.png",
-    "categories": [3],
-    "correctAnswers": [1]
-  },
-  {
-    "id": 230,
-    "image": "images/TWT8.png",
-    "categories": [3],
-    "correctAnswers": [2]
-  },
-  {
     "id": 231,
     "image": "images/TWT9.png",
     "categories": [3],
@@ -803,18 +778,6 @@
   {
     "id": 233,
     "image": "images/TWT11.png",
-    "categories": [3],
-    "correctAnswers": [2]
-  },
-  {
-    "id": 234,
-    "image": "images/TWT12.png",
-    "categories": [3],
-    "correctAnswers": [2]
-  },
-  {
-    "id": 235,
-    "image": "images/TWT13.png",
     "categories": [3],
     "correctAnswers": [2]
   },
@@ -835,12 +798,6 @@
     "image": "images/TWT16.png",
     "categories": [3],
     "correctAnswers": [2]
-  },
-  {
-    "id": 239,
-    "image": "images/TWT17.png",
-    "categories": [3],
-    "correctAnswers": [1, 3]
   },
   {
     "id": 240,
