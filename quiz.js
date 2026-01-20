@@ -27,6 +27,19 @@ const areAnswersCorrect = (user, correct) => {
 const loadJSON = async (path) => (await fetch(path)).json();
 
 /*************************
+ * AUDIO PLAYBACK
+ *************************/
+function playQuestionNumber() {
+  const questionNumber = QuizState.currentIndex + 1;
+  const audioPath = `audios/numbers/q${questionNumber}.wav`;
+  
+  const audio = new Audio(audioPath);
+  audio.play().catch(err => {
+    console.error("Failed to play audio:", err);
+  });
+}
+
+/*************************
  * INITIAL LOAD
  *************************/
 async function initApp() {
@@ -199,6 +212,7 @@ function renderQuestion() {
   } / ${QuizState.questions.length}`;
   updateAnswerSlotsUI();
   updateAnswerButtonsUI();
+  playQuestionNumber();
 }
 
 function updateAnswerSlotsUI() {

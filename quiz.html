@@ -249,24 +249,6 @@
             // Render first question
             renderQuestion();
         });
-
-        /*************************
-         * UI HOOK IMPLEMENTATION
-         *************************/
-        function renderQuestion() {
-            const q = getCurrentQuestion();
-
-            // Image
-            document.getElementById("question-image").src = q.image;
-
-            // Question number (current / total)
-            document.getElementById("question-number").textContent =
-                `${QuizState.currentIndex + 1} / ${QuizState.questions.length}`;
-
-            // Restore answers
-            updateAnswerSlotsUI();
-            updateAnswerButtonsUI();
-        }
     </script>
 
 </body>
