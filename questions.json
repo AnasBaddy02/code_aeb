@@ -140,7 +140,7 @@
   {
     "id": 124,
     "image": "images/AWA24.png",
-    "categories": [1],
+    "categories": [1, 2],
     "correctAnswers": [1]
   },
   {
@@ -330,12 +330,6 @@
     "image": "images/TT25.png",
     "categories": [2],
     "correctAnswers": [2, 4]
-  },
-  {
-    "id": 156,
-    "image": "images/TT26.png",
-    "categories": [2],
-    "correctAnswers": [1]
   },
   {
     "id": 157,
