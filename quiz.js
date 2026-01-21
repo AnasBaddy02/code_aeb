@@ -158,6 +158,16 @@ function nextQuestion() {
   }
 }
 
+function nextQuestionNoTimer() {
+  evaluateCurrentQuestion();
+  if (QuizState.currentIndex < QuizState.questions.length - 1) {
+    QuizState.currentIndex++;
+    renderQuestion();
+  } else {
+    endQuiz();
+  }
+}
+
 function prevQuestion() {
   if (QuizState.currentIndex > 0) {
     QuizState.currentIndex--;
