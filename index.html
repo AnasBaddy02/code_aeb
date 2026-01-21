@@ -56,7 +56,7 @@
 
     /**
      * Builds the category buttons on the index page.
-     * Splits categories with more than 40 questions into multiple chunks.
+     * Splits categories with more than 40 questions into multiple chunks of equal size.
      * Passes the correct category name to the quiz so the footer shows it.
      */
     function buildCategoryButtons() {
@@ -69,12 +69,21 @@
           q.categories.includes(cat.id)
         );
 
-        const chunkSize = 40;
-        const chunks = [];
+        const maxPerQuiz = 40;
+        let chunks = [];
 
-        // Split questions into chunks of 40 max
-        for (let i = 0; i < questions.length; i += chunkSize) {
-          chunks.push(questions.slice(i, i + chunkSize));
+        // If questions <= 40, create one chunk. Otherwise split evenly
+        if (questions.length <= maxPerQuiz) {
+          chunks.push(questions);
+        } else {
+          // Calculate number of quizzes needed
+          const numQuizzes = Math.ceil(questions.length / maxPerQuiz);
+          const questionsPerQuiz = Math.ceil(questions.length / numQuizzes);
+
+          // Split into equal-sized chunks
+          for (let i = 0; i < questions.length; i += questionsPerQuiz) {
+            chunks.push(questions.slice(i, i + questionsPerQuiz));
+          }
         }
 
         // Create a button for each chunk
