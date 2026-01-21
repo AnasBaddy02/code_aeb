@@ -108,7 +108,13 @@ function renderResultsButtons() {
 function highlightCurrentButton(idx) {
   const allButtons = document.querySelectorAll("#results-list button");
   allButtons.forEach((btn, i) => {
-    btn.style.border = i === idx ? "2px solid #000" : "none";
+    if (i === idx) {
+      btn.style.border = "3px solid #00d4ff";
+      btn.style.boxShadow = "0 0 10px #00d4ff";
+    } else {
+      btn.style.border = "none";
+      btn.style.boxShadow = "none";
+    }
   });
 }
 
