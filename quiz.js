@@ -141,6 +141,18 @@ function nextQuestion() {
   if (QuizState.currentIndex < QuizState.questions.length - 1) {
     QuizState.currentIndex++;
     renderQuestion();
+    
+    // Disable next button for 5 seconds
+    const nextBtn = document.getElementById("next-btn");
+    nextBtn.disabled = true;
+    nextBtn.classList.remove("btn-success");
+    nextBtn.classList.add("btn-secondary");
+    
+    setTimeout(() => {
+      nextBtn.disabled = false;
+      nextBtn.classList.add("btn-success");
+      nextBtn.classList.remove("btn-secondary");
+    }, 4000);
   } else {
     endQuiz();
   }
