@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderScore();
   renderResultsButtons();
   showResult(currentResultIndex);
+  
+  // Display category name
+  const categoryName = sessionStorage.getItem("quizCategory") || "تلقائي";
+  const categoryEl = document.getElementById("category-name");
+  if (categoryEl) {
+    categoryEl.textContent = categoryName;
+  }
 });
 
 /*************************

@@ -120,8 +120,18 @@
 
     <!-- FOOTER -->
     <footer class="border-top py-2">
-        <div class="container d-flex justify-content-center">
-            <button class="btn btn-danger" onclick="exitResults()">خروج</button>
+        <div class="container-fluid">
+            <div class="row align-items-center text-center gy-2">
+                <div class="col-md-4 d-flex justify-content-center">
+                    <button class="btn btn-danger px-4" onclick="exitResults()">خروج</button>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-inline-flex align-items-center gap-2 px-4 py-2 fw-bold">
+                        <span id="category-name" class="text-light"></span>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
         </div>
     </footer>
 

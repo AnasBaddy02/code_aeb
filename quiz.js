@@ -179,12 +179,16 @@ function prevQuestion() {
  * QUIZ END
  *************************/
 function endQuiz() {
-  sessionStorage.setItem("quizResults", JSON.stringify(getResultsSummary()));
+  const results = getResultsSummary();
+  sessionStorage.setItem("quizResults", JSON.stringify(results));
+  sessionStorage.setItem("quizCategory", QuizState.categoryName);
   window.location.href = "results.html";
 }
 
 function exitQuiz() {
-  sessionStorage.setItem("quizResults", JSON.stringify(getResultsSummary()));
+  const results = getResultsSummary();
+  sessionStorage.setItem("quizResults", JSON.stringify(results));
+  sessionStorage.setItem("quizCategory", QuizState.categoryName);
   window.location.href = "results.html";
 }
 
