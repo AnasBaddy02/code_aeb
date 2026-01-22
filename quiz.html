@@ -85,13 +85,19 @@
             overflow: hidden;
         }
 
+        .row.h-100 {
+            width: 100%;
+        }
+
         /* Image Column */
         .image-column {
             display: flex;
-            align-items: stretch;
+            align-items: center;
+            justify-content: center;
             padding: 1.5rem 1.5rem 1.5rem 0;
             flex: 1;
             overflow: hidden;
+            min-width: 0;
         }
 
         @media (max-width: 768px) {
