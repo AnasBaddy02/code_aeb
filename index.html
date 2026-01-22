@@ -8,40 +8,252 @@
 
   <!-- Bootstrap RTL -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      padding: 1.5rem 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .main-container {
+      padding: 2rem 0;
+      min-height: calc(100vh - 80px);
+    }
+
+    .practice-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .practice-card {
+      background: linear-gradient(135deg, #0f3460 0%, #1a5f7a 100%);
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .practice-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .practice-card .card-body {
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .practice-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .practice-btn {
+      padding: 0.9rem 3rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      border: none;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      color: #fff;
+    }
+
+    .practice-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+      background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    }
+
+    .categories-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #categories-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      justify-items: stretch;
+    }
+
+    .category-btn {
+      padding: 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+      color: #fff;
+      text-align: center;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    }
+
+    .category-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 102, 204, 0.5);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #0080ff 0%, #0099ff 100%);
+    }
+
+    .category-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #0f3460 0%, #1a5f7a 100%);
+      border: none;
+      border-radius: 15px;
+    }
+
+    .modal-header {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .series-btn {
+      width: 100%;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+      color: #fff;
+      text-align: right;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    }
+
+    .series-btn:hover {
+      transform: translateX(10px);
+      box-shadow: 0 8px 25px rgba(0, 102, 204, 0.5);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #0080ff 0%, #0099ff 100%);
+    }
+
+    .series-number {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      #categories-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .practice-card .card-body {
+        padding: 1.5rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- Header -->
-  <nav class="navbar navbar-dark bg-primary mb-4">
+  <nav class="navbar navbar-dark bg-primary">
     <div class="container">
-      <span class="navbar-brand mb-0 h1">
-        اختبارات تعليم السياقة
+      <span class="navbar-brand mb-0">
+        🚗 اختبارات تعليم السياقة
       </span>
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container main-container">
 
-    <!-- Practice Quiz -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <h4 class="card-title mb-3">اختبار تدريبي</h4>
-        <button class="btn btn-success btn-lg" onclick="startPracticeQuiz()">
-          اختبار تدريبي (40 سؤال)
-        </button>
+    <!-- Practice Quiz Section -->
+    <div class="practice-section">
+      <div class="practice-card">
+        <div class="card-body">
+          <h2 class="practice-title">🎯 اختبار تدريبي</h2>
+          <p class="text-light mb-3">40 سؤال عشوائي من جميع المحاور</p>
+          <button class="btn practice-btn" onclick="startPracticeQuiz()">
+            ابدأ الاختبار التدريبي
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Categories -->
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title mb-3">الاختبارات حسب المحور</h4>
-
-        <div id="categories-container" class="d-flex flex-wrap gap-3"></div>
-      </div>
+    <!-- Categories Section -->
+    <div class="categories-section">
+      <h2 class="section-title">📚 اختبارات حسب المحور</h2>
+      <div id="categories-container"></div>
     </div>
 
+  </div>
+
+  <!-- Series Selection Modal -->
+  <div class="modal fade" id="seriesModal" tabindex="-1" aria-labelledby="seriesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="seriesModalLabel">اختر السلسلة</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="seriesContainer">
+          <!-- Buttons will be generated here -->
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- JS -->
@@ -86,24 +298,58 @@
           }
         }
 
-        // Create a button for each chunk
-        chunks.forEach((chunk, index) => {
-          // Label shown on button (with (1), (2) if split)
-          const label = chunks.length > 1 ? `${cat.name} (${index + 1})` : cat.name;
+        // If multiple chunks, create a single button that opens a modal
+        if (chunks.length > 1) {
+          const btn = document.createElement("button");
+          btn.className = "btn category-btn";
+          btn.innerHTML = `<div><div style="font-weight: 600;">${cat.name}</div><div style="font-size: 0.85rem; opacity: 0.9;">${chunks.length} سلاسل</div></div>`;
+          btn.onclick = () => showSeriesModal(cat.name, chunks);
+          container.appendChild(btn);
+        } else {
+          // Single chunk - create button directly
+          const chunk = chunks[0];
+          const label = cat.name;
+          const subtitle = `${chunk.length} سؤال`;
 
           const btn = document.createElement("button");
-          btn.className = "btn btn-primary btn-lg";
-          btn.textContent = label;
+          btn.className = "btn category-btn";
+          btn.innerHTML = `<div><div style="font-weight: 600;">${label}</div><div style="font-size: 0.85rem; opacity: 0.9;">${subtitle}</div></div>`;
 
-          // Pass questions array, category name, quiz number, and total quizzes
           const footerName = cat.name;
-          const quizNumber = index + 1;
-          const totalQuizzes = chunks.length;
+          const quizNumber = 1;
+          const totalQuizzes = 1;
           btn.onclick = () => startCategoryQuiz(chunk, footerName, quizNumber, totalQuizzes);
 
           container.appendChild(btn);
-        });
+        }
       });
+    }
+
+    function showSeriesModal(categoryName, chunks) {
+      const container = document.getElementById("seriesContainer");
+      container.innerHTML = "";
+
+      chunks.forEach((chunk, index) => {
+        const seriesLabel = arabicNumber(index + 1); // 1 -> الأولى, 2 -> الثانية, etc
+        const btn = document.createElement("button");
+        btn.className = "btn series-btn";
+        btn.innerHTML = `سلسلة ${index + 1} <span class="series-number">${chunk.length} سؤال</span>`;
+        btn.onclick = () => {
+          startCategoryQuiz(chunk, categoryName, index + 1, chunks.length);
+          const modal = bootstrap.Modal.getInstance(document.getElementById("seriesModal"));
+          modal.hide();
+        };
+        container.appendChild(btn);
+      });
+
+      const modal = new bootstrap.Modal(document.getElementById("seriesModal"));
+      document.getElementById("seriesModalLabel").textContent = categoryName;
+      modal.show();
+    }
+
+    function arabicNumber(num) {
+      const arabicNumbers = ["", "الأولى", "الثانية", "الثالثة", "الرابعة", "الخامسة"];
+      return arabicNumbers[num] || `السلسلة ${num}`;
     }
   </script>
 
