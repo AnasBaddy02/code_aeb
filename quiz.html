@@ -7,36 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        /* ------------------------------
-       BODY
-    ------------------------------ */
-        body {
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100vh;
+            width: 100%;
             overflow: hidden;
-            /* desktop no scroll */
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
         }
 
         @media (max-width: 767px) {
             body {
                 overflow-y: auto;
-                /* allow scrolling on mobile */
             }
         }
 
-        /* ------------------------------
-       QUESTION IMAGE
-    ------------------------------ */
+        /* Question Image */
         #question-image {
             width: 100%;
-            height: calc(100vh - 80px);
-            /* fill from top to footer */
+            height: 100%;
             object-fit: fill;
-            /* stretch to fit */
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
         @media (max-width: 767px) {
             #question-image {
                 height: auto;
-                /* maintain aspect ratio on mobile */
                 object-fit: contain;
             }
         }
@@ -53,61 +60,164 @@
             }
         }
 
-        /* ------------------------------
-       IMAGE COLUMN
-    ------------------------------ */
-        .image-column {
-            height: calc(100vh - 80px);
+        /* Main content - grows to fill available space */
+        .container-fluid.flex-grow-1 {
+            flex: 1;
             display: flex;
-            align-items: stretch;
+            overflow: hidden;
         }
 
-        /* ------------------------------
-       ANSWER SLOTS
-    ------------------------------ */
+        /* Image Column */
+        .image-column {
+            display: flex;
+            align-items: stretch;
+            padding: 1.5rem 1.5rem 1.5rem 0;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Answer Slots */
         .answer-slot {
-            width: 48px;
-            height: 48px;
-            border-radius: 6px;
-            background-color: #6c757d;
-            /* Bootstrap secondary */
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
             color: white;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0.2;
-            /* looks empty */
-            transition: opacity 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 102, 204, 0.2);
         }
 
         .answer-slot.filled {
             opacity: 1;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
         }
 
-        /* ------------------------------
-       SLOT TEXT (Large screens)
-    ------------------------------ */
+        /* Cards */
+        .card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.95) 0%, rgba(26, 95, 122, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #ff4757 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #ff4757 0%, #dc3545 100%);
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0080ff 0%, #0099ff 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+            color: white;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #17a2b8 0%, #00bcd4 100%);
+            border: none;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: linear-gradient(135deg, #00bcd4 0%, #17a2b8 100%);
+            color: white;
+        }
+
+        .btn-outline-primary {
+            border: 2px solid rgba(0, 102, 204, 0.5);
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background: rgba(0, 102, 204, 0.2);
+            border-color: rgba(0, 102, 204, 0.8);
+        }
+
+        /* Answer buttons */
+        .btn-lg {
+            font-size: 1.3rem;
+            padding: 1rem 1.2rem;
+            min-height: 70px;
+        }
+
+        /* Large screens */
         @media (min-width: 1200px) {
-            .slot {
-                font-size: 1.8rem;
-                padding: 1rem 1.5rem;
+            .btn-lg {
+                font-size: 1.5rem;
+                min-height: 85px;
             }
         }
 
         @media (min-width: 1600px) {
-            .slot {
-                font-size: 2.1rem;
+            .btn-lg {
+                font-size: 1.8rem;
+                min-height: 100px;
             }
         }
 
-        /* ------------------------------
-       BUTTONS
-    ------------------------------ */
-        .btn-lg {
-            font-size: 1.25rem;
-            padding: 0.9rem 1.2rem;
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.95) 0%, rgba(26, 95, 122, 0.95) 100%);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+            padding: 0.75rem 0;
         }
     </style>
 
