@@ -146,24 +146,65 @@ function showResult(idx) {
   const userAnswers = r.userAnswers || [];
   const correctAnswers = r.correctAnswers || [];
 
-  // Wrong answers crossed in red
+  // Create container for selected answers
+  const selectedContainer = document.createElement("div");
+  selectedContainer.style.display = "flex";
+  selectedContainer.style.alignItems = "center";
+  selectedContainer.style.gap = "0.5rem";
+  selectedContainer.style.flexWrap = "wrap";
+
+  const selectedLabel = document.createElement("span");
+  selectedLabel.textContent = "إجابتك:";
+  selectedLabel.style.fontWeight = "bold";
+  selectedLabel.style.color = "#ffffff";
+  selectedLabel.style.fontSize = "0.95rem";
+  selectedContainer.appendChild(selectedLabel);
+
+  // Show selected answers (wrong ones crossed)
   userAnswers.forEach((ans) => {
+    const span = document.createElement("span");
+    span.className = "badge";
     if (!correctAnswers.includes(ans)) {
-      const span = document.createElement("span");
-      span.className = "badge bg-danger text-white";
+      // Wrong answer - crossed with red
+      span.classList.add("bg-danger");
       span.style.textDecoration = "line-through";
-      span.textContent = ans;
-      answersBox.appendChild(span);
+    } else {
+      // Correct answer - green
+      span.classList.add("bg-success");
     }
+    span.style.textWhiteSpace = "nowrap";
+    span.textContent = ans;
+    selectedContainer.appendChild(span);
   });
 
-  // Correct answers in green
-  correctAnswers.forEach((ans) => {
-    const span = document.createElement("span");
-    span.className = "badge bg-success text-white";
-    span.textContent = ans;
-    answersBox.appendChild(span);
-  });
+  answersBox.appendChild(selectedContainer);
+
+  // Create container for correct answers
+  if (correctAnswers.length > 0) {
+    const correctContainer = document.createElement("div");
+    correctContainer.style.display = "flex";
+    correctContainer.style.alignItems = "center";
+    correctContainer.style.gap = "0.5rem";
+    correctContainer.style.flexWrap = "wrap";
+
+    const correctLabel = document.createElement("span");
+    correctLabel.textContent = "الإجابة الصحيحة:";
+    correctLabel.style.fontWeight = "bold";
+    correctLabel.style.color = "#ffffff";
+    correctLabel.style.fontSize = "0.95rem";
+    correctContainer.appendChild(correctLabel);
+
+    // Show correct answers in green
+    correctAnswers.forEach((ans) => {
+      const span = document.createElement("span");
+      span.className = "badge bg-success text-white";
+      span.style.textWhiteSpace = "nowrap";
+      span.textContent = ans;
+      correctContainer.appendChild(span);
+    });
+
+    answersBox.appendChild(correctContainer);
+  }
 }
 
 /*************************

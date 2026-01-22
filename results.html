@@ -79,10 +79,11 @@
         #results-list {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
+            gap: 12px;
             overflow-y: auto;
             flex: 1;
-            padding-right: 0.5rem;
+            padding: 0.5rem;
+            align-content: start;
         }
 
         #results-list::-webkit-scrollbar {
@@ -113,6 +114,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            min-height: 50px;
         }
 
         /* Result image */
@@ -358,7 +361,7 @@
             <img id="result-image" alt="صورة السؤال">
 
             <!-- ANSWERS PANEL -->
-            <div id="answers-box" dir="ltr">
+            <div id="answers-box">
                 <!-- JS populates crossed / correct answers -->
             </div>
         </div>
