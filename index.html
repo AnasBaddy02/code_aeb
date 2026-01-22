@@ -95,9 +95,11 @@
           btn.className = "btn btn-primary btn-lg";
           btn.textContent = label;
 
-          // Pass questions array and the original category name (without suffix) to the quiz
+          // Pass questions array, category name, quiz number, and total quizzes
           const footerName = cat.name;
-          btn.onclick = () => startCategoryQuiz(chunk, footerName);
+          const quizNumber = index + 1;
+          const totalQuizzes = chunks.length;
+          btn.onclick = () => startCategoryQuiz(chunk, footerName, quizNumber, totalQuizzes);
 
           container.appendChild(btn);
         });

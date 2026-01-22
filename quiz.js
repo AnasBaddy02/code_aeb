@@ -10,6 +10,8 @@ const QuizState = {
   results: {}, // { questionId: true/false }
   quizType: null, // "practice" | "category"
   categoryName: null, // string shown in footer
+  quizNumber: null, // which quiz number in the category (1, 2, 3, etc.)
+  totalQuizzes: null, // total number of quizzes for the category
 };
 
 /*************************
@@ -72,10 +74,12 @@ function startPracticeQuiz() {
   goToQuizPage();
 }
 
-function startCategoryQuiz(questionsSubset, categoryName) {
+function startCategoryQuiz(questionsSubset, categoryName, quizNumber = null, totalQuizzes = null) {
   QuizState.quizType = "category";
   QuizState.categoryName = categoryName;
   QuizState.questions = questionsSubset;
+  QuizState.quizNumber = quizNumber;
+  QuizState.totalQuizzes = totalQuizzes;
   resetQuiz();
   goToQuizPage();
 }
@@ -182,6 +186,10 @@ function endQuiz() {
   const results = getResultsSummary();
   sessionStorage.setItem("quizResults", JSON.stringify(results));
   sessionStorage.setItem("quizCategory", QuizState.categoryName);
+  if (QuizState.quizNumber && QuizState.totalQuizzes) {
+    sessionStorage.setItem("quizNumber", QuizState.quizNumber);
+    sessionStorage.setItem("totalQuizzes", QuizState.totalQuizzes);
+  }
   window.location.href = "results.html";
 }
 
@@ -189,6 +197,10 @@ function exitQuiz() {
   const results = getResultsSummary();
   sessionStorage.setItem("quizResults", JSON.stringify(results));
   sessionStorage.setItem("quizCategory", QuizState.categoryName);
+  if (QuizState.quizNumber && QuizState.totalQuizzes) {
+    sessionStorage.setItem("quizNumber", QuizState.quizNumber);
+    sessionStorage.setItem("totalQuizzes", QuizState.totalQuizzes);
+  }
   window.location.href = "results.html";
 }
 
@@ -215,6 +227,8 @@ function goToQuizPage() {
       questions: QuizState.questions,
       quizType: QuizState.quizType,
       categoryName: QuizState.categoryName,
+      quizNumber: QuizState.quizNumber,
+      totalQuizzes: QuizState.totalQuizzes,
     })
   );
   window.location.href = "quiz.html";

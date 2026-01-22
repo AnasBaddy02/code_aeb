@@ -212,6 +212,7 @@
                 <div class="col-md-4">
                     <div class="d-inline-flex align-items-center gap-2 px-4 py-2 fw-bold">
                         <span id="category-name" class="text-light"></span>
+                        <span id="quiz-number" class="text-light" style="display: none;"></span>
                     </div>
                 </div>
 
@@ -239,6 +240,8 @@
             QuizState.results = {};
             QuizState.quizType = savedQuiz.quizType || "practice";
             QuizState.categoryName = savedQuiz.categoryName || "تلقائي";
+            QuizState.quizNumber = savedQuiz.quizNumber || null;
+            QuizState.totalQuizzes = savedQuiz.totalQuizzes || null;
 
             // Set category name in footer
             const el = document.getElementById("category-name");
@@ -247,6 +250,13 @@
                     QuizState.quizType === "category"
                         ? QuizState.categoryName
                         : "تلقائي";
+            }
+
+            // Set quiz number in footer if it's a category quiz with multiple quizzes
+            const quizNumberEl = document.getElementById("quiz-number");
+            if (quizNumberEl && QuizState.quizNumber && QuizState.totalQuizzes > 1) {
+                quizNumberEl.textContent = `(${QuizState.quizNumber}/${QuizState.totalQuizzes})`;
+                quizNumberEl.style.display = "inline";
             }
 
             // Render first question

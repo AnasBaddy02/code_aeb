@@ -26,6 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (categoryEl) {
     categoryEl.textContent = categoryName;
   }
+  
+  // Display quiz number if available
+  const quizNumber = sessionStorage.getItem("quizNumber");
+  const totalQuizzes = sessionStorage.getItem("totalQuizzes");
+  const quizNumberEl = document.getElementById("quiz-number");
+  if (quizNumberEl && quizNumber && totalQuizzes && parseInt(totalQuizzes) > 1) {
+    quizNumberEl.textContent = `(${quizNumber}/${totalQuizzes})`;
+    quizNumberEl.style.display = "inline";
+  }
 });
 
 /*************************
